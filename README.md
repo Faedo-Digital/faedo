@@ -242,7 +242,7 @@ El mapa utiliza:
 /* Tipografía */
 --font-heading: 'Wittgenstein', serif;
 --font-body: 'Figtree', sans-serif;
---font-size-base: 19px;
+--font-size-base: 17px;
 ```
 
 ### Características de diseño

@@ -5,7 +5,7 @@
   /* Fuentes personalizadas */
   --font-heading: 'Wittgenstein', serif;
   --font-body: 'Figtree', sans-serif;
-  --font-size-base: 19px;
+  --font-size-base: 17px;
 }
 
 /* Tema personalizado - Tailwind v4 */
@@ -31,7 +31,7 @@
   --font-family-body: 'Figtree', sans-serif;
   
   /* Font size base */
-  --font-size-base: 19px;
+  --font-size-base: 17px;
 }
 
 /* Accesibilidad básica */
@@ -82,6 +82,17 @@ p a:hover {
 p a:focus-visible {
   outline: 2px solid var(--color-primary-400);
   outline-offset: 2px;
+}
+.content li a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.content li a:hover {
+  color: inherit;
+  border-color: currentColor;
 }
 
 .prose > section {
@@ -270,4 +281,3 @@ li strong {
 h1 {
   font-size: 3rem;
 }
-  
