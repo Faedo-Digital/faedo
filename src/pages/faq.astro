@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "¿Cómo llegar al Faedo de Ciñera desde León?",
     answer:
-      "Para llegar al Faedo de Ciñera desde León, toma la A-66 dirección Oviedo y sal en La Robla/Ciñera (unos 35 km, 30 minutos). También puedes llegar en autobús ALSA hasta Ciñera o en tren FEVE hasta La Robla y luego taxi. El inicio de la ruta del Faedo de Ciñera está en el pueblo de Ciñera, junto a la iglesia.",
+      "Para llegar al Faedo de Ciñera desde León, toma la N630 dirección Oviedo y sal en Ciñera (unos 35 km, 30 minutos). También puedes llegar en autobús ALSA hasta Ciñera o en tren FEVE hasta La Robla y luego taxi. El inicio de la ruta del Faedo de Ciñera está en el pueblo de Ciñera, junto a la iglesia.",
   },
   {
     question: "¿Dónde aparcar en el Faedo de Ciñera?",
@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "¿La ruta del Faedo de Ciñera es apta para niños?",
     answer:
-      "Sí, la ruta del Faedo de Ciñera es perfecta para niños. Es un sendero corto (4,5 km), fácil y con pasarelas de madera que lo hacen seguro. Hay que vigilar cerca del arroyo y en algunos tramos con desnivel. Es una de las mejores rutas de senderismo en León para hacer en familia.",
+      "Sí, la ruta del Faedo de Ciñera es perfecta para niños. Es un sendero corto (6km), fácil y con pasarelas de madera que lo hacen seguro. ay que vigilar cerca del arroyo y en algunos tramos con desnivel. Es una de las mejores rutas de senderismo en León para hacer enH familia. No apto para ir con carritos.",
   },
   {
     question: "¿Se puede ir con perros al Faedo de Ciñera?",
@@ -46,7 +46,7 @@ const faqs = [
   {
     question: "¿Cuánto dura la ruta del Faedo de Ciñera?",
     answer:
-      "La ruta del Faedo de Ciñera dura entre 1,5 y 2 horas, dependiendo de tu ritmo y las paradas que hagas. Son 4,5 km circulares con 120 metros de desnivel acumulado. Si vas con niños o quieres hacer fotos, calcula unas 2 horas.",
+      "La ruta del Faedo de Ciñera dura entre 1,5 y 2 horas, dependiendo de tu ritmo y las paradas que hagas. Son 6 km circulares con 120 metros de desnivel acumulado. Si vas con niños o quieres hacer fotos, calcula unas 2 horas.",
   },
   {
     question: "¿Dónde descargar el GPX del Faedo de Ciñera?",
@@ -61,7 +61,7 @@ const faqs = [
   {
     question: "¿Hay restaurantes cerca del Faedo de Ciñera?",
     answer:
-      "Sí, en Ciñera, La Robla y Pola de Gordón hay varios restaurantes con cocina tradicional leonesa. Se recomienda reservar en fines de semana y festivos, especialmente en otoño cuando el Faedo de Ciñera recibe más visitantes.",
+      "Sí, en Ciñera hay varios sitios para comer. Se recomienda reservar en fines de semana y festivos, especialmente en otoño cuando el Faedo de Ciñera recibe más visitantes.",
   },
   {
     question: "¿Está permitido hacer fuego en el Faedo de Ciñera?",
@@ -73,11 +73,7 @@ const faqs = [
     answer:
       "La cobertura móvil en el Faedo de Ciñera es variable. En el pueblo de Ciñera hay cobertura, pero dentro del hayedo puede ser intermitente. Descarga el mapa y el GPX antes de empezar la ruta.",
   },
-  {
-    question: "¿Cuánto mide la ruta del Faedo de Ciñera?",
-    answer:
-      "La ruta del Faedo de Ciñera es un sendero circular de 4,5 kilómetros con 120 metros de desnivel acumulado. Es una ruta corta y fácil que se completa en 1,5-2 horas.",
-  },
+
   {
     question: "¿El Faedo de Ciñera es gratis?",
     answer:
@@ -127,7 +123,19 @@ faqSchema.mainEntity = faqs.map(faq => ({
         >. Si tienes alguna duda que no aparece aquí, no dudes en contactar con
         la Junta Vecinal de Ciñera.
       </p>
-
+<div class="max-w-lg mx-auto mt-4 mb-6">
+  <a
+    href="/guia-visitantes"
+    class="block w-full text-center bg-emerald-50 border border-emerald-200
+           hover:bg-emerald-100 transition rounded-xl py-3 px-4 text-emerald-800 
+           font-medium shadow-sm"
+  >
+    📘 Ver Guía para Visitantes  
+    <span class="block text-sm opacity-75 font-normal">
+      Rutas, preparativos y servicios del pueblo
+    </span>
+  </a>
+</div>
       {
         faqs.map((faq, index) => (
           <section>
@@ -148,6 +156,9 @@ faqSchema.mainEntity = faqs.map(faq => ({
           ids={["ruta", "historia-naturaleza", "guia-visitantes", "blog"]}
         />
       </div>
+      
+      
+
     </section>
   </div>
 </Layout>
