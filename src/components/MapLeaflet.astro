@@ -41,13 +41,15 @@ import 'leaflet/dist/leaflet.css';
 </style>
 
 <script>
-  import L from 'leaflet';
+  import L from "leaflet";
+  import type { LatLngTuple } from "leaflet";
+
   document.addEventListener("DOMContentLoaded", function () {
     // Coordenadas reales del centro de la ruta (calculadas del GPX)
-    const centroRuta = [42.884037, -5.622944];
+    const centroRuta: LatLngTuple = [42.884037, -5.622944];
 
     // Track completo de la ruta real del GPX (108 puntos)
-    const rutaCompleta = [
+    const rutaCompleta: LatLngTuple[] = [
       [42.884014, -5.636232],
       [42.883918, -5.63618],
       [42.883903, -5.636031],
@@ -207,7 +209,7 @@ import 'leaflet/dist/leaflet.css';
     });
 
     // Marcador en el punto de inicio real (Iglesia de San Miguel Arcángel - Ciñera)
-    const marcadorInicio = L.marker([42.884014, -5.636232], { icon: iconoFaedo })
+    L.marker([42.884014, -5.636232], { icon: iconoFaedo })
       .addTo(map)
       .bindPopup(
         `
@@ -228,7 +230,11 @@ import 'leaflet/dist/leaflet.css';
       );
 
     // Puntos de interés basados en el track real del GPX
-    const puntosInteres = [
+    const puntosInteres: {
+      coords: LatLngTuple;
+      titulo: string;
+      descripcion: string;
+    }[] = [
       {
         coords: [42.883566, -5.616386],
         titulo: "🌲 Entrada al Faedo",
@@ -322,10 +328,10 @@ import 'leaflet/dist/leaflet.css';
     map.fitBounds(polylineRuta.getBounds(), { padding: [20, 20] });
 
     // Añadir leyenda actualizada con datos reales
-    const leyenda = L.control({ position: "bottomright" });
-    leyenda.onAdd = function (map) {
-      const div = L.DomUtil.create("div", "info legend");
-      div.innerHTML = `
+    const LegendControl = L.Control.extend({
+      onAdd: function () {
+        const div = L.DomUtil.create("div", "info legend");
+        div.innerHTML = `
         <div style="
           background: rgba(255,255,255,0.95);
           padding: 12px;
@@ -346,8 +352,10 @@ import 'leaflet/dist/leaflet.css';
           <div>① ② ③ ④ ⑤ Puntos destacados de la ruta</div>
         </div>
       `;
-      return div;
-    };
+        return div;
+      },
+    });
+    const leyenda = new LegendControl({ position: "bottomright" });
     leyenda.addTo(map);
 
     // Añadir escala

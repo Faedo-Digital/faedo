@@ -2,7 +2,7 @@
 import Layout from "../../components/Layout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Seo from "../../components/Seo.astro";
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { Image } from "astro:assets";
 import { SITE_LOGO, SITE_URL } from "../../consts";
 
@@ -10,10 +10,10 @@ interface Props {
   params: { slug: string };
 }
 const { slug } = Astro.params as Props["params"];
-const post = (await getCollection("blog")).find((p) => p.slug === slug);
+const post = (await getCollection("blog")).find((p) => p.id === slug);
 if (!post) throw new Error("Post no encontrado");
 const data = post.data;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const blogLd = {
   "@context": "https://schema.org",
@@ -43,7 +43,7 @@ const blogLd = {
 };
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((p) => ({ params: { slug: p.slug } }));
+  return posts.map((p) => ({ params: { slug: p.id } }));
 }
 ---
 

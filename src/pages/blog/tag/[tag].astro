@@ -54,7 +54,7 @@ const description = `Todos los artículos del blog sobre ${tag}. Descubre rutas,
         <PostCard 
           title={post.data.title}
           excerpt={post.data.excerpt}
-          href={`/blog/${post.slug}`}
+          href={`/blog/${post.id}`}
           cover={post.data.coverImage}
           date={post.data.date.toISOString()}
           tags={post.data.tags}

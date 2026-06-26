@@ -7,9 +7,6 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://faedo.es',
   image: {
-    // Optimización de imágenes
-    domains: ['faedo.es'],
-    remotePatterns: [{ protocol: 'https' }],
     service: {
       entrypoint: 'astro/assets/services/sharp',
       config: {
@@ -19,18 +16,6 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
-    resolve: {
-      alias: {
-        '@': '/src',
-        '@components': '/src/components',
-        '@layouts': '/src/layouts',
-        '@assets': '/src/assets',
-        '@utils': '/src/utils',
-        '@data': '/src/data',
-        '@content': '/src/content',
-        '@styles': '/src/styles',
-      },
-    },
   },
   integrations: [
     mdx(),
