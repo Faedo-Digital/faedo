@@ -18,7 +18,7 @@
     "content:review": "node scripts/content-review-server.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/mdx": "^8.0.1",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@iconify-json/ph": "^1.2.2",
@@ -33,6 +33,6 @@
     "@astrojs/check": "^0.9.10",
     "@types/leaflet": "^1.9.22",
     "typescript": "^7.0.2",
-    "wrangler": "^4.128.0"
+    "wrangler": "^4.130.0"
   }
 }
