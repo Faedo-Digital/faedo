@@ -21,6 +21,15 @@ Senderos que combinan hayedos, robledales, patrimonio minero y panorámicas de l
 
 Un hayedo centenario, pasarelas de madera, puentes y el ejemplar monumental *Fagus*. Ideal para familias, primavera y otoño son sus momentos más mágicos. La ruta enlaza con vestigios mineros y termina en las marmitas y pozas naturales.
 
+### Ruta El Dragón de Gordón
+
+📏 Distancia: 76,60 km (circular)  
+⛰️ Desnivel: +2.229 m / −2.229 m  
+💪 Dificultad: Media-alta (según época)  
+📍 Modalidad: BTT y senderismo
+
+Itinerario circular que conecta los **17 pueblos** del municipio de Gordón y muestra la riqueza del Alto Bernesga. Pasa por Ciñera (Faedo y Pozo Ibarra). Altitud entre 966 m y 1.390 m. Guía completa: [Ruta El Dragón de Gordón](/ruta/dragon-de-gordon).
+
 ### Ruta del Celorio (Geras – Paradilla)
 
 📏 Distancia: ≈ 6,5 km  
