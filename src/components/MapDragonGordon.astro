@@ -1,0 +1,150 @@
+---
+// Mapa orientativo de la Ruta El Dragón de Gordón (17 pueblos del municipio)
+---
+
+<div id="mapa-dragon-container" class="rounded-xl overflow-hidden my-4">
+  <div
+    id="mapa-dragon"
+    style="height: 420px; width: 100%; border-radius: 8px;"
+  >
+  </div>
+</div>
+<noscript>
+  <p>
+    Consulta el municipio de Gordón en{' '}
+    <a
+      href="https://www.openstreetmap.org/#map=12/42.87/-5.64"
+      target="_blank"
+      rel="noopener noreferrer">OpenStreetMap</a
+    >
+    o la web del{' '}
+    <a
+      href="https://www.ayto-lapoladegordon.es"
+      target="_blank"
+      rel="noopener noreferrer">Ayuntamiento de La Pola de Gordón</a
+    >.
+  </p>
+</noscript>
+
+<style>
+  .leaflet-popup-content {
+    font-family: Arial, sans-serif;
+    max-width: 220px;
+  }
+  .leaflet-popup-content h4 {
+    margin: 0 0 6px 0;
+    color: #006d5b;
+    font-size: 15px;
+  }
+  .leaflet-popup-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #555;
+  }
+</style>
+
+<script>
+  import L from "leaflet";
+  import type { LatLngTuple } from "leaflet";
+
+  type Pueblo = {
+    name: string;
+    coords: LatLngTuple;
+    note?: string;
+  };
+
+  // Coordenadas aproximadas de los 17 núcleos del municipio de Gordón
+  const pueblos: Pueblo[] = [
+    { name: "La Pola de Gordón", coords: [42.8558, -5.6756], note: "Capital municipal" },
+    { name: "Ciñera", coords: [42.884, -5.6362], note: "Faedo y Pozo Ibarra" },
+    { name: "Santa Lucía", coords: [42.8725, -5.6448] },
+    { name: "Vega", coords: [42.868, -5.652] },
+    { name: "Huergas", coords: [42.8485, -5.692] },
+    { name: "Llombera", coords: [42.8355, -5.7055] },
+    { name: "Peredilla", coords: [42.828, -5.688] },
+    { name: "Nocedo", coords: [42.822, -5.665] },
+    { name: "Los Barrios", coords: [42.838, -5.648] },
+    { name: "Beberino", coords: [42.845, -5.628] },
+    { name: "Buiza", coords: [42.862, -5.608] },
+    { name: "Caboñera", coords: [42.875, -5.598] },
+    { name: "Paradilla", coords: [42.902, -5.575] },
+    { name: "Geras", coords: [42.905, -5.558] },
+    { name: "Folledo", coords: [42.918, -5.572] },
+    { name: "Villasimpliz", coords: [42.895, -5.612] },
+    { name: "La Vid", coords: [42.888, -5.625] },
+  ];
+
+  // Trazado orientativo circular (no sustituye un GPX oficial)
+  const trazadoOrientativo: LatLngTuple[] = [
+    [42.8558, -5.6756], // La Pola
+    [42.8485, -5.692], // Huergas
+    [42.8355, -5.7055], // Llombera
+    [42.828, -5.688], // Peredilla
+    [42.822, -5.665], // Nocedo
+    [42.838, -5.648], // Los Barrios
+    [42.845, -5.628], // Beberino
+    [42.862, -5.608], // Buiza
+    [42.875, -5.598], // Caboñera
+    [42.902, -5.575], // Paradilla
+    [42.905, -5.558], // Geras
+    [42.918, -5.572], // Folledo
+    [42.895, -5.612], // Villasimpliz
+    [42.888, -5.625], // La Vid
+    [42.884, -5.6362], // Ciñera
+    [42.8725, -5.6448], // Santa Lucía
+    [42.868, -5.652], // Vega
+    [42.8558, -5.6756], // cierre La Pola
+  ];
+
+  function initializeMap() {
+    const mapElement = document.getElementById("mapa-dragon");
+    if (
+      !mapElement ||
+      (mapElement as HTMLElement & { _leaflet_id?: number })._leaflet_id
+    ) {
+      return;
+    }
+
+    const centro: LatLngTuple = [42.87, -5.64];
+    const map = L.map("mapa-dragon").setView(centro, 12);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18,
+    }).addTo(map);
+
+    const sombra = L.polyline(trazadoOrientativo, {
+      color: "#7a3e00",
+      weight: 8,
+      opacity: 0.25,
+    }).addTo(map);
+
+    const linea = L.polyline(trazadoOrientativo, {
+      color: "#e67e00",
+      weight: 4,
+      opacity: 0.9,
+    }).addTo(map);
+
+    sombra.bringToBack();
+
+    pueblos.forEach((pueblo) => {
+      const marker = L.circleMarker(pueblo.coords, {
+        radius: pueblo.name === "Ciñera" || pueblo.name === "La Pola de Gordón" ? 8 : 6,
+        color: "#006d5b",
+        weight: 2,
+        fillColor: "#349981",
+        fillOpacity: 0.9,
+      }).addTo(map);
+
+      marker.bindPopup(
+        `<h4>${pueblo.name}</h4>${pueblo.note ? `<p>${pueblo.note}</p>` : "<p>Núcleo de la ruta circular</p>"}`,
+      );
+    });
+
+    map.fitBounds(linea.getBounds(), { padding: [28, 28] });
+  }
+
+  document.addEventListener("astro:page-load", initializeMap);
+  initializeMap();
+</script>

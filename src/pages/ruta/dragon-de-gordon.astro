@@ -1,0 +1,358 @@
+---
+import Layout from "@components/Layout.astro";
+import PageContent from "@components/PageContent.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import MapDragonGordon from "@components/MapDragonGordon.astro";
+import ExploreMore from "@components/ExploreMore.astro";
+import CtaLink from "@components/CtaLink.astro";
+import ExtLink from "@components/ExtLink.astro";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import coverImage from "@assets/dragon-de-gordon.webp";
+import imageFaedo from "@assets/paseo-faedo.webp";
+import imagePozo from "@assets/pozo-ibarra.webp";
+
+const pueblos = [
+  "La Pola de Gordón",
+  "Los Barrios",
+  "Beberino",
+  "Buiza",
+  "Folledo",
+  "Geras",
+  "Huergas",
+  "Llombera",
+  "Nocedo",
+  "Peredilla",
+  "Caboñera",
+  "Ciñera",
+  "Santa Lucía",
+  "Vega",
+  "La Vid",
+  "Paradilla",
+  "Villasimpliz",
+];
+
+const data = {
+  title: "Ruta El Dragón de Gordón",
+  summary:
+    "Ruta circular de BTT y senderismo que une los 17 pueblos del municipio de Gordón (León): 76,6 km y 2.229 m de desnivel positivo por el Alto Bernesga.",
+  distance_km: 76.6,
+  elevation_m: 2229,
+  elevation_down_m: 2229,
+  altitude_max_m: 1390,
+  altitude_min_m: 966,
+  difficulty: "media-alta (según época del año)",
+  season: "Todo el año (mejor en primavera, verano y otoño seco)",
+  route_type: "Circular",
+  start_coords: {
+    lat: 42.8558,
+    lng: -5.6756,
+  },
+  access:
+    "Desde León, A-66 / N-630 dirección Oviedo hasta La Pola de Gordón o Ciñera. En bus ALSA hasta núcleos del valle.",
+  parking:
+    "Aparcamiento en La Pola de Gordón y en Ciñera (inicio habitual junto a la ruta del Faedo).",
+  family_friendly: false,
+  tags: ["BTT", "senderismo", "Gordón", "León", "circular", "Alto Bernesga"],
+  coverImage,
+};
+
+const touristTripLd = {
+  "@type": "TouristTrip",
+  name: data.title,
+  description: data.summary,
+  url: new URL(Astro.url.pathname, Astro.site).toString(),
+  image: new URL(data.coverImage.src, Astro.site).toString(),
+  touristType: ["Ciclistas BTT", "Senderistas"],
+  itinerary: {
+    "@type": "ItemList",
+    name: "Ruta circular El Dragón de Gordón (17 pueblos)",
+  },
+  additionalProperty: [
+    {
+      "@type": "PropertyValue",
+      name: "Distancia",
+      value: `${data.distance_km} km`,
+    },
+    {
+      "@type": "PropertyValue",
+      name: "Desnivel positivo",
+      value: `${data.elevation_m} m`,
+    },
+    {
+      "@type": "PropertyValue",
+      name: "Dificultad",
+      value: data.difficulty,
+    },
+    {
+      "@type": "PropertyValue",
+      name: "Tipo",
+      value: data.route_type,
+    },
+  ],
+};
+---
+
+<Layout
+  title="Ruta El Dragón de Gordón: 76,6 km BTT y senderismo"
+  description={data.summary}
+  image={data.coverImage.src}
+  jsonLd={[touristTripLd]}
+>
+  <Breadcrumbs
+    items={[
+      { href: "/", label: "Inicio" },
+      { href: "/ruta/dragon-de-gordon", label: "Dragón de Gordón" },
+    ]}
+  />
+
+  <article>
+    <header class="text-center max-w-2xl mx-auto mt-5 px-4">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        Ruta El Dragón de Gordón
+      </h1>
+      <p>
+        Circular de BTT y senderismo que conecta los 17 pueblos del municipio de
+        Gordón, en el corazón del Alto Bernesga.
+      </p>
+    </header>
+
+    <CtaLink centered href="/ruta/faedo-de-cinera">
+      Ver también la ruta del Faedo
+    </CtaLink>
+
+    <section aria-labelledby="datos-tecnicos" class="max-w-7xl mx-auto px-4 mt-6">
+      <h2 id="datos-tecnicos" class="text-center text-3xl text-emerald-800 mb-6">
+        Datos técnicos
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div class="rounded-xl border border-neutral-400 p-4 text-center">
+          <Icon name="ph:ruler" class="h-7 w-7 mx-auto text-emerald-600 mb-2" aria-hidden="true" />
+          <p class="text-sm text-neutral-600 m-0">Distancia</p>
+          <p class="text-xl font-semibold text-emerald-800 m-0">76,60 km</p>
+        </div>
+        <div class="rounded-xl border border-neutral-400 p-4 text-center">
+          <Icon name="ph:mountains" class="h-7 w-7 mx-auto text-emerald-600 mb-2" aria-hidden="true" />
+          <p class="text-sm text-neutral-600 m-0">Desnivel + / −</p>
+          <p class="text-xl font-semibold text-emerald-800 m-0">
+            2.229 m
+          </p>
+        </div>
+        <div class="rounded-xl border border-neutral-400 p-4 text-center">
+          <Icon name="ph:arrow-up" class="h-7 w-7 mx-auto text-emerald-600 mb-2" aria-hidden="true" />
+          <p class="text-sm text-neutral-600 m-0">Altitud máx. / mín.</p>
+          <p class="text-xl font-semibold text-emerald-800 m-0">
+            1.390 / 966 m
+          </p>
+        </div>
+        <div class="rounded-xl border border-neutral-400 p-4 text-center">
+          <Icon name="ph:person-simple-bike" class="h-7 w-7 mx-auto text-emerald-600 mb-2" aria-hidden="true" />
+          <p class="text-sm text-neutral-600 m-0">Dificultad</p>
+          <p class="text-lg font-semibold text-emerald-800 m-0 leading-snug">
+            Media-alta
+          </p>
+        </div>
+      </div>
+      <p class="text-center text-sm text-neutral-600 mt-4">
+        Tipo: <strong>circular</strong> · Modalidad: <strong>BTT y senderismo</strong> ·
+        Dificultad variable según la época del año
+      </p>
+    </section>
+
+    <section aria-labelledby="mapa" class="max-w-7xl mx-auto px-4 mt-8">
+      <h2 id="mapa" class="text-center text-3xl text-emerald-800 mb-2">
+        Mapa orientativo
+      </h2>
+      <p class="text-center text-sm text-neutral-600 mb-2 max-w-2xl mx-auto">
+        Recorrido orientativo por los 17 núcleos del municipio. Para el track
+        oficial, consulta la información del Ayuntamiento de La Pola de Gordón.
+      </p>
+      <MapDragonGordon />
+    </section>
+
+    <aside class="grid sm:grid-cols-3 gap-4 max-w-7xl mx-auto py-8 px-4">
+      <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4 flex flex-col justify-between">
+        <div class="mb-4 text-center">
+          <span class="inline-block text-emerald-300 mb-2">
+            <Icon name="ph:signpost" class="h-8 w-8" aria-hidden="true" />
+          </span>
+          <h3 class="text-2xl text-emerald-800">Cómo llegar</h3>
+        </div>
+        <ul class="mb-3">
+          <li>En coche por la N-630 / A-66 hacia Oviedo.</li>
+          <li>Salidas a La Pola de Gordón o Ciñera.</li>
+          <li>Bus ALSA desde León a núcleos del valle.</li>
+        </ul>
+        <p class="text-sm m-0">
+          Más info en{' '}
+          <ExtLink href="https://www.ayto-lapoladegordon.es">
+            ayto-lapoladegordon.es
+          </ExtLink>
+        </p>
+      </div>
+
+      <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
+        <div class="mb-4 text-center">
+          <span class="inline-block text-emerald-300">
+            <Icon name="ph:map-trifold" class="h-8 w-8" aria-hidden="true" />
+          </span>
+          <h3 class="text-2xl text-emerald-800">Tipo de ruta</h3>
+        </div>
+        <ul>
+          <li>Circular por el municipio de Gordón</li>
+          <li>Pensada para BTT y también a pie</li>
+          <li>Une 17 pueblos del Alto Bernesga</li>
+          <li>Ideal por tramos o en jornadas largas</li>
+        </ul>
+      </div>
+
+      <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
+        <div class="mb-4 text-center">
+          <span class="inline-block text-emerald-300">
+            <Icon name="ph:tree" class="h-8 w-8" aria-hidden="true" />
+          </span>
+          <h3 class="text-2xl text-emerald-800">Pasa por Ciñera</h3>
+        </div>
+        <ul>
+          <li>
+            <a href="/ruta/faedo-de-cinera">Faedo de Ciñera</a>
+          </li>
+          <li>
+            <a href="/pozo-ibarra">Pozo Ibarra (BIC 2011)</a>
+          </li>
+          <li>
+            <a href="/guia-visitantes">Guía para visitantes</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <PageContent>
+      <h2>¿Qué es la Ruta del Dragón?</h2>
+      <p>
+        La <strong>Ruta El Dragón de Gordón</strong> es un itinerario circular
+        de <strong>BTT y senderismo</strong> que conecta los{' '}
+        <strong>17 pueblos</strong> del municipio de Gordón. Su objetivo es
+        mostrar la riqueza natural, cultural y paisajística del{' '}
+        <strong>Alto Bernesga</strong>, en la vertiente sur de la Cordillera
+        Cantábrica.
+      </p>
+      <p>
+        Con <strong>76,60 km</strong> de recorrido y{' '}
+        <strong>2.229 m</strong> de desnivel positivo (y el mismo negativo), es
+        una propuesta de dificultad <strong>media-alta</strong>, que puede
+        variar según la época del año. La altitud oscila entre los{' '}
+        <strong>966 m</strong> y los <strong>1.390 m</strong>.
+      </p>
+
+      <figure class="my-8">
+        <Image
+          class="w-full h-auto rounded-2xl object-cover object-center border border-neutral-200"
+          src={coverImage}
+          alt="Cartel informativo de la Ruta El Dragón de Gordón con mapa y datos técnicos"
+          loading="lazy"
+        />
+        <figcaption class="text-sm text-neutral-600 text-center mt-2">
+          Cartel oficial de la ruta (Ayuntamiento de La Pola de Gordón /
+          programa mixto de empleo y formación).
+        </figcaption>
+      </figure>
+
+      <h2>Sobre Gordón</h2>
+      <p>
+        Gordón es el corazón de la montaña central leonesa. Asentado en la
+        vertiente sur de la Cordillera Cantábrica, el municipio se articula
+        alrededor de los ríos <strong>Bernesga</strong> y{' '}
+        <strong>Casares</strong>, con cumbres que superan los{' '}
+        <strong>1.600 m</strong>, bosques frondosos y valles estrechos. La ruta
+        permite recorrer esa diversidad a pedales o a pie, pueblo a pueblo.
+      </p>
+
+      <h2>Ciñera en el Dragón</h2>
+      <p>
+        Uno de los núcleos del itinerario es <strong>Ciñera de Gordón</strong>,
+        pueblo ligado a la minería del carbón. Aquí se encuentra el{' '}
+        <a href="/ruta/faedo-de-cinera">Faedo de Ciñera</a>, uno de los hayedos
+        mejor conservados de España, con árboles centenarios, y el{' '}
+        <a href="/pozo-ibarra">Pozo Ibarra</a>, patrimonio industrial declarado{' '}
+        <strong>Bien de Interés Cultural</strong> en 2011.
+      </p>
+
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center my-8"
+        src={imageFaedo}
+        alt="Pasarela de madera en el Faedo de Ciñera, punto de la Ruta del Dragón"
+        loading="lazy"
+      />
+
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center my-8"
+        src={imagePozo}
+        alt="Castillete del Pozo Ibarra en Ciñera, en la Ruta El Dragón de Gordón"
+        loading="lazy"
+      />
+
+      <h2>Los 17 pueblos de la ruta</h2>
+      <p>
+        El Dragón enlaza estos núcleos del municipio de Gordón:
+      </p>
+      <ul class="grid sm:grid-cols-2 gap-x-6">
+        {pueblos.map((pueblo) => (
+          <li>
+            {pueblo === "Ciñera" ? (
+              <a href="/ruta/faedo-de-cinera">{pueblo}</a>
+            ) : (
+              pueblo
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <h2 id="seguridad">Cuida tu seguridad</h2>
+      <p>
+        Consejos del cartel oficial de la ruta, pensados sobre todo para BTT:
+      </p>
+      <h3>Antes de salir</h3>
+      <ul>
+        <li>Consulta la meteorología.</li>
+        <li>Usa casco y ropa visible.</li>
+        <li>Lleva agua, comida y herramientas básicas.</li>
+        <li>Revisa frenos, cambios y presión de ruedas.</li>
+      </ul>
+      <h3>Durante la ruta</h3>
+      <ul>
+        <li>No vayas solo o avisa de tu itinerario.</li>
+        <li>Lleva el móvil cargado.</li>
+        <li>Adapta la velocidad al terreno y respeta a otros usuarios.</li>
+        <li>Permanece en los caminos señalizados.</li>
+      </ul>
+      <h3>En carretera</h3>
+      <ul>
+        <li>Usa luces con poca visibilidad.</li>
+        <li>Cumple las normas de circulación.</li>
+        <li>Lleva elementos reflectantes.</li>
+      </ul>
+
+      <h2>Cómo combinarla con el Faedo</h2>
+      <p>
+        Si buscas una jornada corta y familiar, haz primero la{' '}
+        <a href="/ruta/faedo-de-cinera">ruta circular del Faedo (4,5 km)</a>. Si
+        vienes con bicicleta de montaña o quieres un reto largo por el municipio,
+        el Dragón de Gordón es la propuesta grande: puedes recorrerla completa o
+        por tramos, pasando por Ciñera y enlazando patrimonio natural y minero.
+      </p>
+      <p>
+        Información oficial del municipio:{' '}
+        <ExtLink href="https://www.ayto-lapoladegordon.es">
+          www.ayto-lapoladegordon.es
+        </ExtLink>
+      </p>
+    </PageContent>
+  </article>
+
+  <ExploreMore
+    variant="planifica"
+    title="Sigue descubriendo Gordón"
+    description="Planifica tu visita al Faedo de Ciñera y al resto del valle de Gordón."
+  />
+</Layout>

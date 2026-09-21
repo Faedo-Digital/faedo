@@ -10,6 +10,7 @@ import imageBocamina from '../assets/bocamina.webp'
 import imagePuente from '../assets/puente-palos.webp'
 import imageFagus from '../assets/fagus.webp'
 import imageNutria from '../assets/nutria.webp'
+import imageDragon from '../assets/dragon-de-gordon.webp'
 
 export interface Card {
   id: string;
@@ -29,6 +30,14 @@ export const allCards: Card[] = [
     description: 'Consejos para disfrutar de tu ruta',
     icon: 'ph:compass',
     backgroundImage: imagenRuta.src
+  },
+  {
+    id: 'dragon-de-gordon',
+    href: '/ruta/dragon-de-gordon',
+    title: 'Dragón de Gordón',
+    description: 'Circular BTT y senderismo: 76,6 km por 17 pueblos',
+    icon: 'ph:bicycle',
+    backgroundImage: imageDragon.src
   },
   {
     id: 'historia-naturaleza',
@@ -127,6 +136,7 @@ export const EXPLORE_CARD_IDS = [
 /** Cards del módulo «Planifica tu visita» */
 export const PLANIFICA_CARD_IDS = [
   "ruta",
+  "dragon-de-gordon",
   "pozo-ibarra",
   "guia-visitantes",
   "historia-naturaleza",
