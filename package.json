@@ -18,12 +18,12 @@
     "content:review": "node scripts/content-review-server.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^8.0.1",
+    "@astrojs/mdx": "^8.0.2",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@iconify-json/ph": "^1.2.2",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.2",
+    "astro": "^7.3.4",
     "astro-icon": "^1.2.0",
     "leaflet": "^1.9.4",
     "sharp": "^0.35.4",
@@ -33,6 +33,6 @@
     "@astrojs/check": "^0.9.10",
     "@types/leaflet": "^1.9.22",
     "typescript": "^7.0.2",
-    "wrangler": "^4.132.0"
+    "wrangler": "^4.136.3"
   }
 }
