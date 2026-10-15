@@ -48,7 +48,7 @@ export default defineConfig({
         if (item.url === 'https://faedo.es/') {
           return { ...item, priority: 1.0, changefreq: 'weekly' };
         }
-        if (item.url.includes('/ruta/faedo-de-cinera')) {
+        if (item.url.includes('/ruta/faedo-de-cinera') || item.url.includes('/ruta/dragon-de-gordon')) {
           return { ...item, priority: 0.9, changefreq: 'weekly' };
         }
         if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
